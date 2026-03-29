@@ -184,17 +184,15 @@ const signup = async (req, res) => {
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
     res.cookie("refToken", refreshToken,{
-      withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
-      withCredentials: true,
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 15 * 60 * 1000
     });
     res.status(201).json({message: "User signed in successful", status: true});
@@ -220,17 +218,15 @@ const login = async (req, res) => {
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
     res.cookie("refToken", refreshToken, {
-      withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
-      withCredentials: true,
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 15 * 60 * 1000
     });
     res.status(200).json({message: "User logged in successful!", status: true});
@@ -277,9 +273,8 @@ const refreshToken = (req, res) => {
     }
     const newAccessToken = generateAccessToken(user);
     res.cookie("accToken", `Bearer ${newAccessToken}`, {
-      withCredentials: true,
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "strict",
       secure: true,
       maxAge: 15 * 60 * 1000
     });

@@ -10,12 +10,12 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 const Login = () => {
     const [inputValue, setInputValue] = useState({username: "", password: ""});
     const [visible, setVisible] = useState(true);
-    const [cookie] = useCookies();
+    const [cookies, setCookies] = useCookies();
     const navigate = useNavigate();
     const {username, password} = inputValue;
 
     useEffect(() => {
-        if(cookie.refToken){
+        if(cookies.data){
             console.log("You already logged in!");
             navigate("/");
         }
@@ -69,6 +69,10 @@ const Login = () => {
             if(status){
                 handleSuccess(message);
                 setTimeout(() => {
+                    setCookies("data", message, {
+                        path: "/",
+                        secure: true
+                    });
                     navigate("/");
                 }, 3000);
             }else{

@@ -12,14 +12,14 @@ import { axiosInstance } from "./axiosInstance.js";
 const Home = () => {
   const navigate = useNavigate();
   const {setUserDetails} = useContext(userContext);
-  const [cookie] = useCookies(); 
+  const [cookie, setCookies, removeCookie] = useCookies(); 
 
   useEffect(() => {
-    if(!cookie.refToken){
+    if(!cookie.data){
       console.log("You did'nt logged in!");
       navigate("/login");
       }
-  },[])
+  },[]);
 
   const handleSuccess = (message) => {
     toast.success(message, {
@@ -59,6 +59,7 @@ const Home = () => {
           if(status){
             handleSuccess(`Session expired ${message}`);
           }
+          removeCookie("data", {path: "/"});
           setTimeout(() => {
             navigate("/login")
           }, 3000);
@@ -83,7 +84,7 @@ const Home = () => {
         console.log(err);
       }
     }
-    if(cookie.refToken){
+    if(cookie.data){
       verifyToken();
     }
   },[]);

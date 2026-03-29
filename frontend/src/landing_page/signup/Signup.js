@@ -45,24 +45,23 @@ export default function Signup(){
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         try{
-            const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+            const {data, status} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
                 ...inputValue
             }, {
                 withCredentials: true
             })
-            if(!data){
-                console.log("data is undefined");
+            if(status === 201){
+                const {message, status} = data;
+                if(status){
+                    handleSuccess(message);
+                    setTimeout(() => {
+                        window.open(`${process.env.REACT_APP_DASHBOARD_URL}/login`, "_blank", "noopener,noreferrer");
+                    },1000);
+                } else{
+                    handleError(message);
+                }
             }
 
-            const {message, status} = data;
-            if(status){
-                handleSuccess(message);
-                setTimeout(() => {
-                    window.open(`${process.env.REACT_APP_DASHBOARD_URL}/login`, "_blank", "noopener,noreferrer");
-                },1000);
-            } else{
-                handleError(message);
-            }
         }catch(err){
             console.log(err);
         }

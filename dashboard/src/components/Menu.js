@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {ToastContainer, toast, Bounce} from "react-toastify";
 import {useContext} from "react";
+import {useCookies} from "react-cookie";
 import {userContext} from "./userContext.js";
 import { axiosInstance } from "./axiosInstance";
 import Avatar from '@mui/material/Avatar';
@@ -86,6 +87,7 @@ const Menu = () => {
 };
 
 const MenuDropdown = ({navigate, username, email}) => {
+  const [cookie, setCookies, removeCookie] = useCookies();
 
   const handleSuccess = (message) => {
     toast.success(message, {
@@ -106,6 +108,7 @@ const MenuDropdown = ({navigate, username, email}) => {
     const logout = await axiosInstance.post("/logout");
     const {message, status} = logout.data;
     if(status){
+      removeCookie("data", {path: "/"});
       handleSuccess(message);
     }
     setTimeout(() => {
