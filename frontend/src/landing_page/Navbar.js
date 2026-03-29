@@ -55,7 +55,7 @@ export default function Navbar() {
                               <div className="container text-center">
                                 <div className="row d-flex">
                                   <div className="col">
-                                    <a className="dropdown-item rounded" href="http://localhost:3001/login" target="_blank" rel="noreferrer">
+                                    <a className="dropdown-item rounded" href={`${process.env.REACT_APP_DASHBOARD_URL}/login`} target="_blank" rel="noreferrer">
                                       <img src="media/images/kite-logo.svg"alt="Kite logo"/>
                                       <p>Kite</p>
                                       <p className="text-muted" style={{fontSize:"12px"}}>Trading platform</p>

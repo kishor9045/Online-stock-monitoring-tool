@@ -187,11 +187,13 @@ const signup = async (req, res) => {
       withCredentials: true,
       httpOnly: false,
       secure: false,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
       withCredentials: true,
       httpOnly: true,
+      sameSite: "none",
       maxAge: 15 * 60 * 1000
     });
     res.status(201).json({message: "User signed in successful", status: true});
@@ -220,11 +222,13 @@ const login = async (req, res) => {
       withCredentials: true,
       httpOnly: false,
       secure: false,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
       withCredentials: true,
       httpOnly: true,
+      sameSite: "none",
       maxAge: 15 * 60 * 1000
     });
     res.status(200).json({message: "User logged in successful!", status: true});
