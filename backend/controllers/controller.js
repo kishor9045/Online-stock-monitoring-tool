@@ -186,13 +186,14 @@ const signup = async (req, res) => {
     res.cookie("refToken", refreshToken,{
       withCredentials: true,
       httpOnly: false,
-      secure: false,
+      secure: true,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
       withCredentials: true,
       httpOnly: true,
+      secure: true,
       sameSite: "none",
       maxAge: 15 * 60 * 1000
     });
@@ -221,13 +222,14 @@ const login = async (req, res) => {
     res.cookie("refToken", refreshToken, {
       withCredentials: true,
       httpOnly: false,
-      secure: false,
+      secure: true,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.cookie("accToken", `Bearer ${accessToken}`, {
       withCredentials: true,
       httpOnly: true,
+      secure: true,
       sameSite: "none",
       maxAge: 15 * 60 * 1000
     });
@@ -277,6 +279,8 @@ const refreshToken = (req, res) => {
     res.cookie("accToken", `Bearer ${newAccessToken}`, {
       withCredentials: true,
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
       maxAge: 15 * 60 * 1000
     });
     res.json({message: "refresh token generated successful", status: true, accessToken: newAccessToken});
