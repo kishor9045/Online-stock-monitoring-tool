@@ -51,8 +51,9 @@ export default function Signup(){
                 withCredentials: true
             })
             if(status === 201){
-                const {message, status} = data;
+                const {message, status, refToken} = data;
                 if(status){
+                    localStorage.setItem("refToken", refToken);
                     handleSuccess(message);
                     setTimeout(() => {
                         window.open(`${process.env.REACT_APP_DASHBOARD_URL}/login`, "_blank", "noopener,noreferrer");

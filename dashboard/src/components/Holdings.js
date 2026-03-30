@@ -10,7 +10,7 @@ const Holdings = () => {
 
   useEffect(() => {
     try{
-      axiosInstance.get("/getHoldings", {headers: {Authorization: accessToken}, withCredentials: true}).then((res) => {
+      axiosInstance.get("/getHoldings", {withCredentials: true}).then((res) => {
         if(res.status === 200){
           setAllHoldings(res.data);
         }

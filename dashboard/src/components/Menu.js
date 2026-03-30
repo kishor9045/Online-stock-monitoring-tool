@@ -108,7 +108,7 @@ const MenuDropdown = ({navigate, username, email}) => {
     const logout = await axiosInstance.post("/logout");
     const {message, status} = logout.data;
     if(status){
-      removeCookie("data", {path: "/"});
+      localStorage.clear();
       handleSuccess(message);
     }
     setTimeout(() => {

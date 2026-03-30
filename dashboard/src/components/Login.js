@@ -15,7 +15,7 @@ const Login = () => {
     const {username, password} = inputValue;
 
     useEffect(() => {
-        if(cookies.data){
+        if(localStorage.getItem("refToken")){
             console.log("You already logged in!");
             navigate("/");
         }
@@ -65,14 +65,11 @@ const Login = () => {
             }, {
                 withCredentials: true
             })
-            const {message, status} = data;
+            const {message, status, refToken} = data;
             if(status){
                 handleSuccess(message);
+                localStorage.setItem("refToken", refToken);
                 setTimeout(() => {
-                    setCookies("data", message, {
-                        path: "/",
-                        secure: true
-                    });
                     navigate("/");
                 }, 3000);
             }else{

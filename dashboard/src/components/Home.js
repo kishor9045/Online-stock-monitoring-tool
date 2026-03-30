@@ -15,7 +15,7 @@ const Home = () => {
   const [cookie, setCookies, removeCookie] = useCookies(); 
 
   useEffect(() => {
-    if(!cookie.data){
+    if(!localStorage.getItem("refToken")){
       console.log("You did'nt logged in!");
       navigate("/login");
       }
@@ -56,10 +56,10 @@ const Home = () => {
           const logout = await axiosInstance.post("/logout");
           const {message, status} = logout.data;
           console.log(logout);
+          localStorage.clear();
           if(status){
             handleSuccess(`Session expired ${message}`);
           }
-          removeCookie("data", {path: "/"});
           setTimeout(() => {
             navigate("/login")
           }, 3000);
@@ -84,7 +84,7 @@ const Home = () => {
         console.log(err);
       }
     }
-    if(cookie.data){
+    if(localStorage.getItem("refToken")){
       verifyToken();
     }
   },[]);
