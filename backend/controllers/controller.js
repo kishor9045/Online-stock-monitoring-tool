@@ -185,13 +185,13 @@ const signup = async (req, res) => {
     const refreshToken = generateRefreshToken(user);
     res.cookie("accToken", `Bearer ${accessToken}`, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
       maxAge: 15 * 60 * 1000
     });
     res.cookie("refToken", refreshToken, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
@@ -219,13 +219,13 @@ const login = async (req, res) => {
     const refreshToken = generateRefreshToken(user);
     res.cookie("accToken", `Bearer ${accessToken}`, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
       maxAge: 15 * 60 * 1000
     });
     res.cookie("refToken", refreshToken, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
@@ -274,7 +274,7 @@ const refreshToken = (req, res) => {
     const newAccessToken = generateAccessToken(user);
     res.cookie("accToken", `Bearer ${newAccessToken}`, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
       maxAge: 15 * 60 * 1000
     });

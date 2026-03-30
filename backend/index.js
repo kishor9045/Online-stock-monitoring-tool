@@ -26,6 +26,7 @@ const corsOptions = {
     credentials: true,
     preflightContinue: false
 }
+app.set("trust proxy", 1);
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
