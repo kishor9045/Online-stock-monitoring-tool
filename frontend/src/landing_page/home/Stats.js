@@ -9,14 +9,14 @@ export default function Stats(){
                     <h2 className="my-4 mb-5" style={heading}>Trust with confidence</h2>
                     <div>
                         <h4 style={heading}>Customer-first always</h4>
-                        <p className="text-muted">That's why 1.6+ crore customers trust Zerodha with ~ ₹6 lakh crores of equity investments, making us India’s largest broker; contributing to 15% of daily retail exchange volumes in India.</p>
+                        <p className="text-muted">That's why 1.6+ crore customers trust Tradexa with ~ ₹6 lakh crores of equity investments, making us India’s largest broker; contributing to 15% of daily retail exchange volumes in India.</p>
                     </div>
                     <div>
                         <h4 style={heading}>No spam or gimmicks</h4>
                         <p className="text-muted">No gimmicks, spam, "gamification", or annoying push notifications. High quality apps that you use at your pace, the way you like. Our philosophies.</p>
                     </div>
                     <div>
-                        <h4 style={heading}>The Zerodha universe</h4>
+                        <h4 style={heading}>The Tradexa universe</h4>
                         <p className="text-muted">Not just an app, but a whole ecosystem. Our investments in 30+ fintech startups offer you tailored services specific to your needs.</p>
                     </div>
                     <div>

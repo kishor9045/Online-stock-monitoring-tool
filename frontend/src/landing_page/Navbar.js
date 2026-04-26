@@ -4,8 +4,8 @@ export default function Navbar() {
   return (
       <nav className="navbar navbar-expand border-bottom position-sticky top-0" style={{backgroundColor:"white"}}>
         <div className="container-fluid p-2">
-          <Link className="navbar-brand text-lg-center" to="/">
-            <img src="media/images/logo.svg" style={{width:"25%"}} alt="Logo"/>
+          <Link className="navbar-brand ms-4" to="/">
+            <img src="media/images/logoNew.png" style={{width:"15%"}} alt="Logo"/>
           </Link>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="w-100 d-flex justify-content-lg-center justify-content-md-end">
