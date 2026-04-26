@@ -4,10 +4,12 @@ import axios from "axios";
 import DematAccount from "./DematAccount.js";
 import {ToastContainer, toast, Bounce} from "react-toastify";
 import OpenAccount from "../OpenAccount.js";
+import "./signup.css";
 
 export default function Signup(){
     const [inputValue, setInputValue] = useState({username: "", password: "", email: ""});
     const {username, password, email} = inputValue;
+    const [loader, setLoader] = useState(false);
 
     const handleOnChange = (e) => {
         const {name, value} = e.target;
@@ -45,11 +47,13 @@ export default function Signup(){
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         try{
+            setLoader(true);
             const {data, status} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
                 ...inputValue
             }, {
                 withCredentials: true
             })
+            setLoader(false);
             if(status === 201){
                 const {message, status, refToken} = data;
                 if(status){
@@ -60,10 +64,11 @@ export default function Signup(){
                     },1000);
                 } else{
                     handleError(message);
+                    setLoader(false);
                 }
             }
-
         }catch(err){
+            setLoader(false);
             console.log(err);
         }
         setInputValue({
@@ -85,6 +90,14 @@ export default function Signup(){
 
     return(
         <>
+          {
+            loader &&
+                <div className="preloader">
+                    <div className="spinner-border text-primary" style={{width: "3rem", height: "3rem"}} role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+          }
           <Hero/>
           <div className="container">
             <div className="row">
